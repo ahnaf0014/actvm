@@ -15,9 +15,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+      - name: setting permission
+        run:  chmod u+x ./setup/macos-latest/setup.sh
+      - name: setting permission
+        run:  chmod u+x ./setup/macos-latest/timeout.sh
       - name: Initializing Setup
-        run: ./setup/macos-latest/setup.sh
+        run:  bash ./setup/macos-latest/setup.sh
       - name: Starting CRD
         run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
       - name: Keep Alive
-        run: ./setup/macos-latest/timeout.sh
+        run: bash ./setup/macos-latest/timeout.sh
